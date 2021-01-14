@@ -7,6 +7,8 @@ const crock = document.querySelector('.crock')
 const cpaper = document.querySelector('.cpaper')
 const ssicss = document.querySelector('.cscissors')
 const selectImg = document.querySelector('.choice')
+let humanScore = 0;
+let machineScore = 0;
 
 
 //starting the game
@@ -29,54 +31,52 @@ function personChoice() {
     selectImg.addEventListener('click', (e) => {
         if(e.target.hasAttribute("src")){
             pImg.setAttribute("src", e.target.src)   
-            mImg.setAttribute("src", computerChoice())  
-            console.log(pImg.src) 
+            mImg.setAttribute("src", computerChoice())    
         }
-    });
+        gameLogic();
+    }); 
 }
 
+
+personChoice()
 //playing the game and setting the score 
-function setTheScore() {
-    personChoice()
-    const pscore = document.querySelector('.p')
-    const mscore = document.querySelector('.m')
+
+function gameLogic() {
 
     if(pImg.src === mImg.src) {
-        pscore.innerHTML;
-        mscore.innerHTML;
-        text.textContent = "It's a tie"
+        text.textContent = "It's a tie";   
+    } else if(pImg.src === "images/rock.png") {
+        if(mImg.src === "images/sicssors.png"){
+             humanScore + 1;
+             text.textContent = "human wines rock crushes sicssors!!";
+     } 
+ }  else if(pImg.src === "images/paper.png") {
+    if(mImg.src === "images/rock.png"){
+         humanScore + 1;
+         text.textContent = "human wines paper covers rock!!";
+ }
+}else if(pImg.src === "images/sicssors.png") {
+    if (mImg.src === "images/paper.png"){
+         humanScore + 1;
+         text.textContent = "human wines sicssors cuts paper!!";
+ } 
+}  else if(mImg.src === "images/paper.png") {
+    if(pImg.src === "images/rock.png"){
+        machineScore + 1;
+        text.textContent = "machine wines paper covers rock try again human!!";
     }
-    else if(pImg.src === 'images/rock.png' && mImg.src === 'images/scissors.png'){
-        pscore.innerHTML + 1;
-        mscore.innerHTML;
-        text.textContent = 'human wines rock crushes scissors!!'
+} 
+else if(mImg.src === "images/sicssors.png") {
+        if (pImg.src === "images/paper.png"){
+            machineScore + 1;
+            text.textContent = "machine wines sicssors cuts paper try again human!!";
+        }
+} else if(mImg.src === "images/rock.png") {
+    if (pImg.src === "images/sicssors.png"){
+        machineScore + 1;
+        text.textContent = "machine wines rock crushes scissors try again human!!";
     }
-    else if (pImg.src === 'images/paper.png' && mImg.src === "images/rock.png"){
-        pscore.innerHTML + 1;
-        mscore.innerHTML;
-        text.textContent = "human wines paper covers rock!!"
-    }
-    else if (pImg.src === 'images/scissors.png' && mImg.src === "images/paper.png"){
-        pscore.innerHTML + 1;
-        mscore.innerHTML;
-        text.textContent = "human wines scissors cuts paper!!"
-    }
-    else if (mImg.src === 'images/paper.png' && pImg.src === "images/rock.png"){
-        pscore.innerHTML;
-        mscore.innerHTML + 1;
-        text.textContent = "machine wines paper covers rock try again human!!"
-    }
-    else if (mImg.src === 'images/scissors.png' && pImg.src === "images/paper.png"){
-        pscore.innerHTML;
-        mscore.innerHTML + 1;
-        text.textContent = "machine wines scissors cuts paper try again human!!"
-    }
-    else if (mImg.src === 'images/rock.png' && pImg.src === "images/scissors.png"){
-        pscore.innerHTML;
-        mscore.innerHTML + 1;
-        text.textContent = "machine wines rock crushes scissors try again human!!"
-    }
-
+}   
+    
 }
 
-setTheScore()

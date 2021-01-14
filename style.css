@@ -297,10 +297,12 @@ h2{
     margin-right: 20px;
     transform: rotate(-100deg);
     cursor: pointer;
+    z-index: 100;
 }
 
 .choice img:nth-of-type(3) {
     transform: rotateZ(-50deg);
+    border: 1px solid black;
 }
 
 .choice img:nth-of-type(1) {
