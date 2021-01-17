@@ -1,12 +1,9 @@
 const btn = document.querySelector('.btn')
 const container = document.querySelector('.container')
-const text = document.querySelector('.text')
-const playerImg = document.querySelector('.personImg')
-const machineImg = document.querySelector('.machineImg')
-const crock = document.querySelector('.crock')
-const cpaper = document.querySelector('.cpaper')
-const ssicss = document.querySelector('.cscissors')
-const playerOptions = document.querySelectorAll('.choice img')
+
+
+
+
 //console.log(playerOptions)
 let humanScore = 0;
 let machineScore = 0;
@@ -14,27 +11,76 @@ let machineScore = 0;
 
 //starting the game
 btn.addEventListener('click', () => {
-    container.style.opacity = '1'
-    btn.style.opacity = '0'
+    container.style.opacity = '1';
+    btn.style.opacity = '0';
 })
+function game() {
 
-function computerPlay () {
-    const RPS = ['rock','paper','scissors']
-    const randomNumber = Math.floor(Math.random() * RPS.length)
-    const machineChoice = `images/${RPS[randomNumber]}.png`
-    return machineChoice;
+    const playerImg = document.querySelector('.personImg')
+    const machineImg = document.querySelector('.machineImg')
+    const playerOptions = document.querySelectorAll('.choice img')
+
+    playerOptions.forEach(option => {
+        option.addEventListener('click', function() {
+
+            const RPS = ['rock','paper','scissors'];
+            const randomNumber = Math.floor(Math.random() * 3);
+            const machineChoice = `images/${RPS[randomNumber]}.png`;
+            const playerChoice = `images/${this.className}.png`;
+
+            playGame(this.className, RPS[randomNumber]);
+
+            playerImg.src = playerChoice;
+            machineImg.src = machineChoice;
+
+          
+            console.log(this.className, RPS[randomNumber])
+        });
+    });
+
 }
 
-function playerPlay () {
-    
-    for(let i = 0; i < playerOptions.length; i++){
-        console.log(playerOptions[i])
+const playGame = (playerSelection, computerSelection) => {
+      
+    console.log(playerSelection)
+    console.log(computerSelection)
+    const text = document.querySelector('.text')
+
+    if(playerSelection === computerSelection) {
+        console.log('ya')
+        text.textContent = 'its a tie';
+        return;
     }
+
+    if(playerSelection === 'scissors') {
+        if(computerSelection === 'rock') {
+            text.textContent = `${computerSelection} beats ${playerSelection} try again human`;
+            return;
+        } else {
+            text.textContent = `${playerSelection} beats ${computerSelection}`;
+            return;
+        }
+    } 
+
+     if(playerSelection === 'rock'){
+        if(computerSelection === 'paper'){
+            text.textContent = `${computerSelection} beats ${playerSelection} try again human`;
+            return;
+        } else {
+            text.textContent = `${playerSelection} beats ${computerSelection} `;
+            return;
+        }
+    }
+
+     if(playerSelection === 'paper') {
+        if(computerSelection === 'scissors'){
+            text.textContent = `${computerSelection} beats ${playerSelection} try again human`;
+            return;
+        } else { 
+            text.textContent = `${playerSelection} beats ${computerSelection} `;
+            return;
+        }
+    }
+
 }
-playerPlay()
-
-function playGame (playerSelection, computerSelection) {
-
-    computerSelection = computerPlay();
-
-}
+game()
