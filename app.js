@@ -1,25 +1,40 @@
 const btn = document.querySelector('.btn')
 const container = document.querySelector('.container')
 
-
-
-
-//console.log(playerOptions)
-let humanScore = 0;
-let machineScore = 0;
-
-
 //starting the game
 btn.addEventListener('click', () => {
     container.style.opacity = '1';
     btn.style.opacity = '0';
 })
+
+
 function game() {
 
+    const text = document.querySelector('.text')
     const playerImg = document.querySelector('.personImg')
     const machineImg = document.querySelector('.machineImg')
     const playerOptions = document.querySelectorAll('.choice img')
 
+    let humanScore = 0;
+    let machineScore = 0;
+
+    const updateScore = ()  => {
+        const pscore = document.querySelector('.p')
+        const mscore = document.querySelector('.m')
+        if(humanScore === 5){
+            alert('human wines')
+            location.reload()
+        }else if(machineScore === 5){
+            alert('machine wines')
+            location.reload()
+        }else{
+            pscore.textContent = humanScore;
+            mscore.textContent = machineScore;
+        }
+    }
+
+    
+    //seting the img of the player and the random img of the computer
     playerOptions.forEach(option => {
         option.addEventListener('click', function() {
 
@@ -33,54 +48,71 @@ function game() {
             playerImg.src = playerChoice;
             machineImg.src = machineChoice;
 
-          
-            console.log(this.className, RPS[randomNumber])
         });
     });
 
-}
-
-const playGame = (playerSelection, computerSelection) => {
+    const playGame = (playerSelection, computerSelection) => {
       
-    console.log(playerSelection)
-    console.log(computerSelection)
-    const text = document.querySelector('.text')
-
-    if(playerSelection === computerSelection) {
-        console.log('ya')
-        text.textContent = 'its a tie';
-        return;
-    }
-
-    if(playerSelection === 'scissors') {
-        if(computerSelection === 'rock') {
-            text.textContent = `${computerSelection} beats ${playerSelection} try again human`;
-            return;
-        } else {
-            text.textContent = `${playerSelection} beats ${computerSelection}`;
+        console.log(playerSelection)
+        console.log(computerSelection)
+        
+    
+        if(playerSelection === computerSelection) {
+            console.log('ya')
+            text.textContent = 'its a tie';
             return;
         }
-    } 
-
-     if(playerSelection === 'rock'){
-        if(computerSelection === 'paper'){
-            text.textContent = `${computerSelection} beats ${playerSelection} try again human`;
-            return;
-        } else {
-            text.textContent = `${playerSelection} beats ${computerSelection} `;
-            return;
+    
+        if(playerSelection === 'scissors') {
+            if(computerSelection === 'rock') {
+                text.textContent = `${computerSelection} beats ${playerSelection} try again human`;
+                machineScore++;
+                updateScore()
+            
+                return;
+            } else {
+                text.textContent = `${playerSelection} beats ${computerSelection}`;
+                humanScore++
+                updateScore()
+            
+                return;
+            }
+        } 
+    
+         if(playerSelection === 'rock'){
+            if(computerSelection === 'paper'){
+                text.textContent = `${computerSelection} beats ${playerSelection} try again human`;
+                machineScore++
+                updateScore()
+           
+                return;
+            } else {
+                text.textContent = `${playerSelection} beats ${computerSelection} `;
+                humanScore++
+                updateScore()
+     
+                return;
+            }
         }
-    }
-
-     if(playerSelection === 'paper') {
-        if(computerSelection === 'scissors'){
-            text.textContent = `${computerSelection} beats ${playerSelection} try again human`;
-            return;
-        } else { 
-            text.textContent = `${playerSelection} beats ${computerSelection} `;
-            return;
+    
+         if(playerSelection === 'paper') {
+            if(computerSelection === 'scissors'){
+                text.textContent = `${computerSelection} beats ${playerSelection} try again human`;
+                machineScore++
+                updateScore()
+      
+                return;
+            } else { 
+                text.textContent = `${playerSelection} beats ${computerSelection} `;
+                humanScore++
+                updateScore()
+                return;
+            }
         }
+        
     }
 
 }
+
+
 game()
