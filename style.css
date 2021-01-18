@@ -1,21 +1,4 @@
-/* .clip{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(to bottom, black,red);
-    clip-path: circle(20% at center 50% );
-    animation: flip 5s infinite alternate;
-}
 
-@keyframes flip {
-    from {
-        filter: hue-rotate(0);
-    }
-
-    to{
-        filter: hue-rotate(360deg);
-    }
-} */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Poppins:wght@500&display=swap');
 *{
@@ -25,9 +8,6 @@
 }
 
 body{
-    width: 100%;
-    height: 100%; 
-   
     font-family: 'Poppins', sans-serif;
     background: #667db6;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
@@ -66,8 +46,8 @@ body{
     width: 100%;
     height: 100vh;
     display: flex;
-    position: relative;
-   
+    /* position: relative;
+    */
 }
 
 .floatingDivs > * {
@@ -222,7 +202,6 @@ body{
     justify-content: space-between;
     flex-direction: column;
     padding: 1em 2em;
-   
 }
 
 
@@ -302,7 +281,7 @@ h2{
 
 .choice img:nth-of-type(3) {
     transform: rotateZ(-50deg);
-    border: 1px solid black;
+   
 }
 
 .choice img:nth-of-type(1) {
@@ -312,6 +291,121 @@ h2{
 .container {
     transition: 1s;
     opacity: 0;
+
+}
+
+@media screen and (max-width: 1200px){
+    .header {
+        width: 100%;
+        text-align: center;
+        
+    }
+
+    .text{
+        width: 100%;
+        text-align: center;
+    }
+
+    .cards{
+        /* border: 1px solid red; */
+        width: 100%;
+        padding: 0 1em;
+    }
+
+    .card {
+        width: 45%;
+        height: 500px;
+        margin: auto;
+    }
+
+}
+
+@media only screen and (max-width: 768px){
+  
+    .header {
+        width: 80%;
+        text-align: center;
+    }
+
+    .header h1 {
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .text{
+        width: 100%;
+        text-align: center;
+    }
+
+    .cards{
+        height: 40%;
+        padding: 0 0;
+        justify-content: flex-start;
+        width: 100%;
+          
+    }
+
+    h2{
+        display: block;
+        margin-right: 160px;
+    }
+
+    .card {
+        width: 40%;
+        height: 350px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .machine {
+        margin-left: 50px;
+    }
+
+    .choice {
+        bottom: 20%;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 375px){
+    .header {
+        width: 100%;
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .text{
+        width: 100%;
+        text-align: center;
+    }
+
+    .cards{
+        width: 100%;
+        padding: 0 .5em;
+    }
+
+    .card {
+        width: 45%;
+        height: 250px;
+        margin: auto;
+    }
+
+    .card .human,.comp{
+        font-size: 1.6em;
+    }
+
+    .choice {
+        bottom: 0;
+        width: 100%;
+        padding: 2em 0;
+    }
+
+    .choice img{
+        width: 25%;
+    }
 
 }
 
