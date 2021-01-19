@@ -22,10 +22,10 @@ function game() {
         const pscore = document.querySelector('.p')
         const mscore = document.querySelector('.m')
         if(humanScore === 5){
-            alert('human wines')
+            alert('human wins')
             location.reload()
         }else if(machineScore === 5){
-            alert('machine wines')
+            alert('machine wins')
             location.reload()
         }else{
             pscore.textContent = humanScore;
